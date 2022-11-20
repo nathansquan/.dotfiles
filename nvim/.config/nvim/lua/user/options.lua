@@ -17,6 +17,9 @@ opt.swapfile = false -- don't use swapfile
 opt.backup = false -- no backup files
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
+-- disable netrw at the very start of your init.lua for nvim-tree (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -------------------------------------------------------------------------------
 -- Neovim UI
