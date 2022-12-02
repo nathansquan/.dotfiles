@@ -1,6 +1,3 @@
-# install nix
-sh <(curl -L https://nixos.org/nix/install) --daemon
-
 # install packages
 nix-env -iA \
 	nixpkgs.zsh \
@@ -20,6 +17,9 @@ stow tmux
 
 # add zsh to valid login shells
 command -v zsh | sudo tee -a /etc/shells
+
+# install package required to use chsh in Fedora
+sudo dnf install util-linux-user
 
 # assign zsh as default shell
 sudo chsh -s $(which zsh) $USER
