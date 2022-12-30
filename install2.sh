@@ -3,11 +3,15 @@ nix-env -iA \
 	nixpkgs.zsh \
 	nixpkgs.antibody \
 	nixpkgs.git \
-	nixpkgs.neovim \
 	nixpkgs.emacs-nox \
 	nixpkgs.tmux \
 	nixpkgs.stow \
-	nixpkgs.direnv
+	nixpkgs.direnv \
+    nixpkgs.dotnet-sdk \
+    nixpkgs.clojure \
+    nixpkgs.nodejs \
+    nixpkgs.mitscheme \
+    nixpkgs.julia
 
 # stow
 stow git

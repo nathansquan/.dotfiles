@@ -71,8 +71,6 @@ opt.incsearch = true -- use incremental search
 -------------------------------------------------------------------------------
 opt.termguicolors = true -- enable 24-bit RGB colors
 -- colorscheme option go before setting the colorscheme
--- cmd [[colorscheme rose-pine]]
--- cmd([[colorscheme nord]]) -- set colorscheme
 opt.background = "dark" -- set background to dark
 cmd([[
     highlight ColorColumn ctermbg=0 guibg=grey
