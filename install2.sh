@@ -8,10 +8,12 @@ nix-env -iA \
 	nixpkgs.stow \
 	nixpkgs.direnv \
     nixpkgs.dotnet-sdk \
-    nixpkgs.clojure \
     nixpkgs.nodejs \
+    nixpkgs.clojure \
+    nixpkgs.sbcl \
     nixpkgs.mitscheme \
-    nixpkgs.julia
+    nixpkgs.julia \
+    nixpkgs.rustup
 
 # stow
 stow git
