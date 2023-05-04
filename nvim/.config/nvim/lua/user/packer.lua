@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
 
   -- Highlight, edit, navigate code using TreeSitter
   use 'nvim-treesitter/nvim-treesitter'
-  
+
   -- Telescope fuzzy finder
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -28,6 +28,8 @@ return require('packer').startup(function(use)
   -- Git stuff
   use 'tpope/vim-fugitive'
 
+  -- repl
+  use 'hkupty/iron.nvim'
 
   -- LSP
   use {

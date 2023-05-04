@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["iron.nvim"] = {
+    loaded = true,
+    path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/iron.nvim",
+    url = "https://github.com/hkupty/iron.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
