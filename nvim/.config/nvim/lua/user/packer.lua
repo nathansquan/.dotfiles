@@ -54,6 +54,12 @@ return require('packer').startup(function(use)
   }
 }
 
+  -- commenting
+  use "numToStr/Comment.nvim"
+
+  -- indent guides
+  use "lukas-reineke/indent-blankline.nvim"
+
   -- Nord colorscheme
   use 'shaunsingh/nord.nvim'
 end)
