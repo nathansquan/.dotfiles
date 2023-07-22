@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  everforest = {
+    loaded = true,
+    path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/everforest",
+    url = "https://github.com/sainnhe/everforest"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -139,10 +144,20 @@ _G.packer_plugins = {
     path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  neovim = {
+    loaded = true,
+    path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/neovim",
+    url = "https://github.com/rose-pine/neovim"
+  },
   ["nord.nvim"] = {
     loaded = true,
     path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/nord.nvim",
     url = "https://github.com/shaunsingh/nord.nvim"
+  },
+  nvim = {
+    loaded = true,
+    path = "/home/nathanquan/.local/share/nvim/site/pack/packer/start/nvim",
+    url = "https://github.com/catppuccin/nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,

@@ -60,6 +60,10 @@ return require('packer').startup(function(use)
   -- indent guides
   use "lukas-reineke/indent-blankline.nvim"
 
-  -- Nord colorscheme
+  -- Colorschemes
   use 'shaunsingh/nord.nvim'
+  use 'catppuccin/nvim'
+  use 'rose-pine/neovim'
+  use 'sainnhe/everforest'
+
 end)
