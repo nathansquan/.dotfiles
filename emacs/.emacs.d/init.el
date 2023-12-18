@@ -37,7 +37,9 @@
 
 ;; Themes
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
-(load-theme 'nord t)
+;; (load-theme 'nord t)
+(use-package solarized-theme
+  :config (load-theme 'solarized-light t))
 
 ;; highlight parens
 (setq show-paren-delay 0
@@ -70,6 +72,22 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
 
+(use-package paredit
+  :init
+  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
+  (add-hook 'cider-repl-mode-hook #'enable-paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook #'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook #'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook #'enable-paredit-mode)
+  :config
+  (show-paren-mode t)
+  :bind (("M-[" . paredit-wrap-square)
+	 ("M-{" . paredit-wrap-curly))
+  :diminish nil)
+  
 (defvar my-packages '(clojure-mode
 		      cider))
 
@@ -82,7 +100,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(which-key doom-modeline counsel cider clojure-mode nord-theme)))
+   '(paredit solarized-theme which-key doom-modeline counsel cider clojure-mode nord-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
