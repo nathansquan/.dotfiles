@@ -10,6 +10,7 @@ nix-env -iA \
     nixpkgs.dotnet-sdk \
     nixpkgs.nodejs \
     nixpkgs.clojure \
+    nixpkgs.leiningen \
     nixpkgs.sbcl \
     nixpkgs.mitscheme \
     nixpkgs.julia \
