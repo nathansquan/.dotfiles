@@ -57,4 +57,5 @@ vim.opt.scrolloff = 10
 
 -- Set default number of spaces to use when typing <Tab>
 -- Can be overriden per filetype in `after/ftplugin`
+vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
