@@ -25,7 +25,7 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       "saghen/blink.cmp",
@@ -45,7 +45,7 @@ return {
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -62,7 +62,7 @@ return {
           settings = {
             Lua = {
               completion = {
-                callSnippet = 'Replace',
+                callSnippet = "Replace",
               },
             },
           },
@@ -72,12 +72,13 @@ return {
       -- Ensure the servers and tools above are installed
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'ruff', -- Used to format python code
-        'stylua', -- Used to format Lua code
+        "ruff", -- Used to format python code
+        "stylua", -- Used to format Lua code
+        --"debugpy", -- Used to debug python code
       })
-      require('mason-tool-installer').setup {ensure_installed = ensure_installed }
+      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-      require('mason-lspconfig').setup {
+      require("mason-lspconfig").setup({
         ensure_installed = {},
         automatic_installation = false,
         handlers = {
@@ -86,15 +87,11 @@ return {
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend(
-              'force',
-              {},
-              capabilities,
-              server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            require("lspconfig")[server_name].setup(server)
           end,
         },
-      }
+      })
     end,
   },
 }
