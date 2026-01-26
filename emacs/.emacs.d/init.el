@@ -39,8 +39,8 @@
 ;; Themes
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
 ;; (load-theme 'nord t)
-;;(use-package solarized-theme
-;;  :config (load-theme 'solarized-light t))
+;; (use-package solarized-theme
+;;   :config (load-theme 'solarized-light t))
 
 ;; highlight parens
 (setq show-paren-delay 0
@@ -156,8 +156,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   '("/home/nathanquan/Documents/org/tasks.org"
+     "/home/nathanquan/Documents/org/birthdays.org"))
  '(package-selected-packages
-   '(org-bullets exec-path-from-shell ivy-rich all-the-icons doom-themes paredit solarized-theme which-key doom-modeline counsel cider clojure-mode nord-theme)))
+   '(all-the-icons cider counsel doom-modeline doom-themes
+		   exec-path-from-shell ivy-rich org-bullets paredit
+		   rainbow-delimiters solarized-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
