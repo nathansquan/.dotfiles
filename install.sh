@@ -36,5 +36,6 @@ sudo make install
 ###############################
 
 sudo apt-get -y install stow
+cd ~/.dotfiles
 stow tmux
 stow nvim
