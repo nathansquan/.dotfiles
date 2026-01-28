@@ -18,6 +18,7 @@ rm JetBrainsMono.zip
 ###############################
 
 sudo apt-get -y install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ###############################
 # Build neovim from source
