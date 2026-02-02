@@ -32,6 +32,9 @@ cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
+# install system reqs for neovim plugins
+sudo apt-get install ripgrep
+
 ###############################
 # Set up symlinks
 ###############################
