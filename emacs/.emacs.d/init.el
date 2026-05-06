@@ -47,10 +47,6 @@
       show-paren-style 'parenthesis)
 (show-paren-mode 1)
 
-;; Show emacs where nix installed language bins are
-;;(add-to-list 'exec-path "~/.nix-profile/bin")
-(setq scheme-program-name "~/.nix-profile/bin/scheme")
-
 (use-package exec-path-from-shell
   :config (exec-path-from-shell-initialize))
 
@@ -124,21 +120,98 @@
 ;; Org-mode
 (use-package org
   :config
+  ;; Files
+  (setq org-directory "~/Documents/org")
+  (setq org-agenda-files "gtd")
   (setq org-ellipsis " ▾")
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-  (setq org-checkbox-hierarchical-statistics nil)
-  (setq org-agenda-files
-	'("~/Documents/org/tasks.org"
-	  "~/Documents/org/birthdays.org"
-	  "~/Documents/org/habits.org"))
+  ;;(setq org-agenda-start-with-log-mode t)
+  ;;(setq org-log-done 'time)
+  ;;(setq org-log-into-drawer t)
+  ;;(setq org-checkbox-hierarchical-statistics nil)
 
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-  ;;(setq org-habit-graph-column 60)
-  (setq org-habit-show-all-today t)
+  ;; CAPTURE ===================================================
+  (setq org-capture-templates
+	'(("i" "Inbox" entry (file "gtd/inbox.org")
+	   "* TODO %?\nEntered on %U")))
+
+  (defun org-capture-inbox ()
+    (interactive)
+    (call-interactively 'org-store-link)
+    (org-capture nil "i"))
+
+  ;; Key bindings
+  (define-key global-map (kbd "C-c a") 'org-agenda)
+  (define-key global-map (kbd "C-c c") 'org-capture)
+  (define-key global-map (kbd "C-c i") 'org-capture-inbox)
+  
+  ;; REFILE ===================================================
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-targets
+	'("gtd/projects"
+	  "gtd/someday.org"
+	  "gtd/waiting.org"))
+
+  ;; TODO
+  (setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "|" "DONE(d)")))
+  
+  (defun log-todo-next-creation-date (&rest ignore)
+    "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
+    (when (and (string= (org-get-todo-state) "NEXT")
+	       (not (org-entry-get nil "ACTIVATED")))
+      (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
+
+  (add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
+  
+  ;; Agenda
+  (setq org-agenda-custom-commands
+	'(("g" "Get Things Done (GTD)"
+	   ((agenda ""
+		    ((org-agenda-skip-function
+		      '(org-agenda-skip-entry-if 'deadline))
+		     (org-deadline-warning-days 0)))
+	    (todo "NEXT"
+		  ((org-agenda-skip-function
+		    '(org-agenda-skip-entry-if 'deadline))
+                   (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                   (org-agenda-overriding-header "\nTasks\n")))
+            (agenda nil
+		    ((org-agenda-entry-types '(:deadline))
+                     (org-agenda-format-date "")
+                     (org-deadline-warning-days 7)
+                     (org-agenda-skip-function
+		      '(org-agenda-skip-entry-if 'notregexp "\\* NEXT"))
+                     (org-agenda-overriding-header "\nDeadlines")))
+            (tags-todo "inbox"
+                       ((org-agenda-prefix-format "  %?-12t% s")
+			(org-agenda-overriding-header "\nInbox\n")))
+            (tags "CLOSED>=\"<today>\""
+                  ((org-agenda-overriding-header "\nCompleted today\n")))))))
+
+  ;; Automatically save buffers after refiling ==================================
+  ;; Get files
+  (setq org-agenda-files 
+	(mapcar 'file-truename 
+		(file-expand-wildcards "~/Documents/org/gtd/*.org")))
+
+  ;; Save the corresponding buffers
+  (defun gtd-save-org-buffers ()
+    "Save `org-agenda-files' buffers without user confirmation. See also `org-save-all-org-buffers'"
+    (interactive)
+    (message "Saving org-agenda-files buffers...")
+    (save-some-buffers t (lambda ()
+			   (when (member (buffer-file-name) org-agenda-files)
+			     t)))
+    (message "Saving org-agenda-files buffers... done"))
+
+  ;; Add it after refile
+  (advice-add 'org-refile :after
+	      (lambda (&rest _)
+		(gtd-save-org-buffers)))
   )
+
+
 
 (use-package org-bullets
   :after org
@@ -157,7 +230,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("/home/nathanquan/Documents/org/tasks.org"
+   '("/home/nathanquan/Documents/org/inbox.org"
+     "/home/nathanquan/Documents/org/tasks.org"
      "/home/nathanquan/Documents/org/birthdays.org"))
  '(package-selected-packages
    '(all-the-icons cider counsel doom-modeline doom-themes
