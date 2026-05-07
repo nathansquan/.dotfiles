@@ -127,7 +127,7 @@
 		(file-expand-wildcards "~/Documents/org/gtd/*.org")))
   (setq org-ellipsis " ▾")
   ;;(setq org-agenda-start-with-log-mode t)
-  ;;(setq org-log-done 'time)
+  (setq org-log-done 'time)
   ;;(setq org-log-into-drawer t)
   ;;(setq org-checkbox-hierarchical-statistics nil)
 
@@ -218,21 +218,3 @@
 (dolist (p my-packages)
   (unless (package-installed-p p)
     (package-install p)))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   '("/Users/nathan.quan/Documents/org/gtd/inbox.org"
-     "/Users/nathan.quan/Documents/org/gtd/projects.org"))
- '(package-selected-packages
-   '(all-the-icons cider counsel doom-modeline doom-themes
-		   exec-path-from-shell ivy-rich org-bullets paredit
-		   rainbow-delimiters solarized-theme)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
