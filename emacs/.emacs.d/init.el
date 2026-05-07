@@ -122,7 +122,9 @@
   :config
   ;; Files
   (setq org-directory "~/Documents/org")
-  (setq org-agenda-files "gtd")
+  (setq org-agenda-files 
+	(mapcar 'file-truename 
+		(file-expand-wildcards "~/Documents/org/gtd/*.org")))
   (setq org-ellipsis " ▾")
   ;;(setq org-agenda-start-with-log-mode t)
   ;;(setq org-log-done 'time)
@@ -148,9 +150,7 @@
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-targets
-	'("gtd/projects"
-	  "gtd/someday.org"
-	  "gtd/waiting.org"))
+	'(("projects.org" :regexp . "\\(?:Tasks\\)")))
 
   ;; TODO
   (setq org-todo-keywords
@@ -190,11 +190,6 @@
                   ((org-agenda-overriding-header "\nCompleted today\n")))))))
 
   ;; Automatically save buffers after refiling ==================================
-  ;; Get files
-  (setq org-agenda-files 
-	(mapcar 'file-truename 
-		(file-expand-wildcards "~/Documents/org/gtd/*.org")))
-
   ;; Save the corresponding buffers
   (defun gtd-save-org-buffers ()
     "Save `org-agenda-files' buffers without user confirmation. See also `org-save-all-org-buffers'"
@@ -210,7 +205,6 @@
 	      (lambda (&rest _)
 		(gtd-save-org-buffers)))
   )
-
 
 
 (use-package org-bullets
@@ -230,9 +224,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("/home/nathanquan/Documents/org/inbox.org"
-     "/home/nathanquan/Documents/org/tasks.org"
-     "/home/nathanquan/Documents/org/birthdays.org"))
+   '("/Users/nathan.quan/Documents/org/gtd/inbox.org"
+     "/Users/nathan.quan/Documents/org/gtd/projects.org"))
  '(package-selected-packages
    '(all-the-icons cider counsel doom-modeline doom-themes
 		   exec-path-from-shell ivy-rich org-bullets paredit
