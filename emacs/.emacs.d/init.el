@@ -179,7 +179,7 @@
             (agenda nil
 		    ((org-agenda-entry-types '(:deadline))
                      (org-agenda-format-date "")
-                     (org-deadline-warning-days 7)
+                     (org-deadline-warning-days 30)
                      (org-agenda-skip-function
 		      '(org-agenda-skip-entry-if 'notregexp "\\* NEXT"))
                      (org-agenda-overriding-header "\nDeadlines")))
